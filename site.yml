@@ -1,0 +1,20 @@
+---
+- hosts: local
+  become: true
+  tasks:
+    - name: 安装 Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: 启动并启用 Nginx 服务
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: 创建自定义 HTML 文件
+      copy:
+        content: "<h1>Hello, Ansible!</h1>"
+        dest: /var/www/html/index.html
+
